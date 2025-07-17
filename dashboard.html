@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Investment Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <h2><i class="fas fa-coins"></i> InvestPro</h2>
+            </div>
+            <ul class="nav-links">
+                <li class="active"><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="deposit.html"><i class="fas fa-wallet"></i> Deposit</a></li>
+                <li><a href="withdraw.html"><i class="fas fa-money-bill-wave"></i> Withdraw</a></li>
+                <li><a href="invest.html"><i class="fas fa-chart-line"></i> Invest</a></li>
+                <li><a href="transactions.html"><i class="fas fa-history"></i> Transactions</a></li>
+                <li><a href="account.html"><i class="fas fa-user"></i> Account</a></li>
+                <li><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <header>
+                <h3>Welcome, <span id="user-name">User</span>!</h3>
+                <div class="user-profile">
+                    <img src="https://via.placeholder.com/40" alt="Profile">
+                </div>
+            </header>
+
+            <!-- Stats Cards -->
+            <div class="stats-cards">
+                <div class="card">
+                    <div class="card-icon" style="background: #e3f2fd;">
+                        <i class="fas fa-wallet" style="color: #2196f3;"></i>
+                    </div>
+                    <div class="card-info">
+                        <p>Account Balance</p>
+                        <h3 id="user-balance">0 UGX</h3>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon" style="background: #e8f5e9;">
+                        <i class="fas fa-chart-line" style="color: #4caf50;"></i>
+                    </div>
+                    <div class="card-info">
+                        <p>Total Earnings</p>
+                        <h3 id="total-earnings">0 UGX</h3>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon" style="background: #fff8e1;">
+                        <i class="fas fa-users" style="color: #ff9800;"></i>
+                    </div>
+                    <div class="card-info">
+                        <p>Referrals</p>
+                        <h3 id="referral-count">0</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <button onclick="window.location.href='deposit.html'">
+                    <i class="fas fa-plus-circle"></i> Deposit
+                </button>
+                <button onclick="window.location.href='withdraw.html'">
+                    <i class="fas fa-hand-holding-usd"></i> Withdraw
+                </button>
+                <button onclick="window.location.href='invest.html'">
+                    <i class="fas fa-piggy-bank"></i> Invest
+                </button>
+            </div>
+
+            <!-- Investment Plans (Preview) -->
+            <div class="section">
+                <h3><i class="fas fa-box-open"></i> Investment Plans</h3>
+                <div class="plans-grid">
+                    <div class="plan-card">
+                        <h4>Starter Plan</h4>
+                        <p><strong>10,000 UGX</strong></p>
+                        <p>Earns <strong>2,000 UGX/day</strong></p>
+                        <p>Duration: <strong>60 days</strong></p>
+                        <button onclick="window.location.href='invest.html'">Invest Now</button>
+                    </div>
+                    <div class="plan-card">
+                        <h4>Premium Plan</h4>
+                        <p><strong>50,000 UGX</strong></p>
+                        <p>Earns <strong>12,000 UGX/day</strong></p>
+                        <p>Duration: <strong>30 days</strong></p>
+                        <button onclick="window.location.href='invest.html'">Invest Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Referral Section -->
+            <div class="section">
+                <h3><i class="fas fa-user-plus"></i> Refer & Earn</h3>
+                <div class="referral-box">
+                    <p>Invite friends and earn <strong>10%</strong> of their deposits!</p>
+                    <div class="referral-link">
+                        <input type="text" id="referral-link" value="https://investpro.com/ref/user123" readonly>
+                        <button onclick="copyReferralLink()"><i class="fas fa-copy"></i> Copy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="section">
+                <h3><i class="fas fa-history"></i> Recent Transactions</h3>
+                <table class="transactions-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactions-list">
+                        <!-- Filled by JavaScript -->
+                    </tbody>
+                </table>
+                <a href="transactions.html" class="view-all">View All Transactions →</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

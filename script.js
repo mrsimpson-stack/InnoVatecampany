@@ -73,9 +73,9 @@ function login() {
     // For demo purposes, we'll simulate a successful login
     currentUser = {
         id: 'user123',
-        name: 'Demo User',
+        name: 'Active User',
         phone: phone,
-        balance: 10000
+        balance: 2000
     };
 
     // Save token to localStorage
@@ -174,7 +174,7 @@ function submitWithdrawal() {
     }
 
     // In a real app, you would check user balance first
-    const balance = 10000; // Replace with actual balance check
+    const balance = 2000; // Replace with actual balance check
     if (amount > balance) {
         alert('Insufficient balance');
         return;

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Investment Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('login')">Login</button>
+                <button class="tab" onclick="switchTab('signup')">Sign Up</button>
+            </div>
+
+            <div id="login-form" class="form-container">
+                <h2>Welcome Back</h2>
+                <input type="tel" placeholder="Phone Number" id="login-phone">
+                <input type="password" placeholder="Password" id="login-password">
+                <button onclick="login()">Login</button>
+            </div>
+
+            <div id="signup-form" class="form-container" style="display:none">
+                <h2>Create Account</h2>
+                <input type="text" placeholder="Full Name" id="signup-name">
+                <input type="tel" placeholder="Phone Number" id="signup-phone">
+                <input type="password" placeholder="Password" id="signup-password">
+                <button onclick="signup()">Register</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

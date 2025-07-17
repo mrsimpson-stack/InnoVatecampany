@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Withdraw Funds</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Withdraw Funds</h1>
+            <a href="dashboard.html" class="back-btn">← Back</a>
+        </header>
+
+        <div class="withdraw-form">
+            <div class="balance-display">
+                <p>Available Balance:</p>
+                <h2 id="user-balance">0 UGX</h2>
+            </div>
+
+            <div class="form-group">
+                <label>Amount (UGX)</label>
+                <input type="number" id="withdraw-amount" placeholder="Enter amount">
+            </div>
+
+            <div class="form-group">
+                <label>Payment Method</label>
+                <select id="withdraw-method">
+                    <option value="mtn">MTN Mobile Money</option>
+                    <option value="airtel">Airtel Money</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" id="withdraw-phone" placeholder="Enter phone number">
+            </div>
+
+            <button onclick="submitWithdrawal()">Request Withdrawal</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

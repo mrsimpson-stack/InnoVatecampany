@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deposit Funds</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Deposit Funds</h1>
+            <a href="dashboard.html" class="back-btn">← Back</a>
+        </header>
+
+        <div class="payment-methods">
+            <div class="method-card">
+                <h3>MTN Mobile Money</h3>
+                <div class="merchant-info">
+                    <p><strong>Merchant Code:</strong> 1234567</p>
+                    <p><strong>Name:</strong> INVESTMENT PLATFORM</p>
+                </div>
+                <input type="number" placeholder="Amount (UGX)" id="mtn-amount">
+                <div class="upload-area" id="mtn-upload">
+                    <p>Upload Payment Screenshot</p>
+                    <input type="file" id="mtn-screenshot" accept="image/*" hidden>
+                </div>
+                <button onclick="submitDeposit('mtn')">Submit Deposit</button>
+            </div>
+
+            <div class="method-card">
+                <h3>Airtel Money</h3>
+                <div class="merchant-info">
+                    <p><strong>Phone Number:</strong> 0748217352</p>
+                    <p><strong>Name:</strong> INVESTMENT PLATFORM</p>
+                </div>
+                <input type="number" placeholder="Amount (UGX)" id="airtel-amount">
+                <div class="upload-area" id="airtel-upload">
+                    <p>Upload Payment Screenshot</p>
+                    <input type="file" id="airtel-screenshot" accept="image/*" hidden>
+                </div>
+                <button onclick="submitDeposit('airtel')">Submit Deposit</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

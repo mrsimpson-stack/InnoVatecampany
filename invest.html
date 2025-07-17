@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Investment Plans</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Investment Plans</h1>
+            <a href="dashboard.html" class="back-btn">← Back</a>
+        </header>
+
+        <div class="plans-container">
+            <div class="plan-card">
+                <h3>Standard Plan</h3>
+                <div class="plan-details">
+                    <p><strong>Investment:</strong> 10,000 UGX</p>
+                    <p><strong>Daily Return:</strong> 2,000 UGX</p>
+                    <p><strong>Duration:</strong> 60 Days</p>
+                    <p><strong>Total Return:</strong> 120,000 UGX</p>
+                </div>
+                <button onclick="invest(10000, 2000, 60)">Invest Now</button>
+            </div>
+
+            <!-- Add more plans as needed -->
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

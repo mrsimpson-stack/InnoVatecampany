@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - InvestPro</title>
+    <link rel="stylesheet" href="account.css">
+</head>
+<body>
+    <div class="account-container">
+        <header class="account-header">
+            <h1>My Account</h1>
+            <a href="/dashboard" class="back-button">← Back to Dashboard</a>
+        </header>
+
+        <div class="account-content">
+            <section class="account-info">
+                <h2>Personal Information</h2>
+                <div class="info-card">
+                    <div class="info-item">
+                        <span class="info-label">Email:</span>
+                        <span id="user-email" class="info-value">loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Phone Number:</span>
+                        <span id="user-phone" class="info-value">loading...</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Account Status:</span>
+                        <span id="account-status" class="info-value status-active">Active</span>
+                    </div>
+                    <button id="edit-info-btn" class="edit-button">Edit Information</button>
+                </div>
+            </section>
+
+            <section class="investment-summary">
+                <h2>Investment Summary</h2>
+                <div class="summary-card">
+                    <div class="summary-item">
+                        <span class="summary-label">Total Invested:</span>
+                        <span id="total-invested" class="summary-value">0 UGX</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Active Investments:</span>
+                        <span id="active-investments" class="summary-value">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Total Earnings:</span>
+                        <span id="total-earnings" class="summary-value">0 UGX</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="investment-details">
+                <h2>Investment Details</h2>
+                <div class="investments-table-container">
+                    <table class="investments-table">
+                        <thead>
+                            <tr>
+                                <th>Plan</th>
+                                <th>Amount</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Status</th>
+                                <th>Estimated Return</th>
+                            </tr>
+                        </thead>
+                        <tbody id="investments-list">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Edit Info Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Edit Account Information</h2>
+            <form id="edit-form">
+                <div class="form-group">
+                    <label for="edit-email">Email Address</label>
+                    <input type="email" id="edit-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-phone">Phone Number</label>
+                    <input type="tel" id="edit-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="current-password">Current Password</label>
+                    <input type="password" id="current-password" required>
+                </div>
+                <button type="submit" class="save-button">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="account.js"></script>
+</body>
+</html>

@@ -4,25 +4,99 @@
     <meta charset="UTF-8">
     <title>Deposit Funds</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .back-btn {
+            text-decoration: none;
+            color: #333;
+            font-size: 18px;
+        }
+        .payment-methods {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        .method-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            background: #f9f9f9;
+        }
+        .merchant-info {
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border: 1px solid #eee;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .upload-area {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            margin: 15px 0;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .upload-area:hover {
+            border-color: #999;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #preview {
+            max-width: 100%;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Deposit Funds</h1>
-            <a href="dashboard.html" class="back-btn">← Back</a>
+            <a href="dashboard.html" class="back-btn">← Back to Dashboard</a>
         </header>
 
         <div class="payment-methods">
             <div class="method-card">
                 <h3>MTN Mobile Money</h3>
                 <div class="merchant-info">
-                    <p><strong>Merchant Code:</strong> 1234567</p>
-                    <p><strong>Name:</strong> INVESTMENT PLATFORM</p>
+                    <p><strong>Phone Number:</strong> 0789728064</p>
+                    <p><strong>Account Name:</strong> Agnes Akampurira</p>
                 </div>
-                <input type="number" placeholder="Amount (UGX)" id="mtn-amount">
-                <div class="upload-area" id="mtn-upload">
+                <input type="number" placeholder="Amount (UGX)" id="mtn-amount" min="1000">
+                <div class="upload-area" id="mtn-upload" onclick="document.getElementById('mtn-screenshot').click()">
                     <p>Upload Payment Screenshot</p>
-                    <input type="file" id="mtn-screenshot" accept="image/*" hidden>
+                    <input type="file" id="mtn-screenshot" accept="image/*" hidden onchange="previewImage(this, 'mtn-preview')">
+                    <img id="mtn-preview" class="preview-image" style="display:none; max-width:100%; margin-top:10px;">
                 </div>
                 <button onclick="submitDeposit('mtn')">Submit Deposit</button>
             </div>
@@ -30,18 +104,146 @@
             <div class="method-card">
                 <h3>Airtel Money</h3>
                 <div class="merchant-info">
-                    <p><strong>Phone Number:</strong> 0748217352</p>
-                    <p><strong>Name:</strong> INVESTMENT PLATFORM</p>
+                    <p><strong>Phone Number:</strong> 0746157388</p>
+                    <p><strong>Account Name:</strong> Nabukeera Ruth</p>
                 </div>
-                <input type="number" placeholder="Amount (UGX)" id="airtel-amount">
-                <div class="upload-area" id="airtel-upload">
+                <input type="number" placeholder="Amount (UGX)" id="airtel-amount" min="1000">
+                <div class="upload-area" id="airtel-upload" onclick="document.getElementById('airtel-screenshot').click()">
                     <p>Upload Payment Screenshot</p>
-                    <input type="file" id="airtel-screenshot" accept="image/*" hidden>
+                    <input type="file" id="airtel-screenshot" accept="image/*" hidden onchange="previewImage(this, 'airtel-preview')">
+                    <img id="airtel-preview" class="preview-image" style="display:none; max-width:100%; margin-top:10px;">
                 </div>
                 <button onclick="submitDeposit('airtel')">Submit Deposit</button>
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        // Function to preview uploaded image
+        function previewImage(input, previewId) {
+            const preview = document.getElementById(previewId);
+            const file = input.files[0];
+            
+            if (file) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    // Update the upload area text
+                    input.parentElement.querySelector('p').textContent = 'Screenshot uploaded ✓';
+                }
+                
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Function to submit deposit
+        async function submitDeposit(method) {
+            const amountInput = document.getElementById(`${method}-amount`);
+            const screenshotInput = document.getElementById(`${method}-screenshot`);
+            const amount = amountInput.value;
+            const screenshot = screenshotInput.files[0];
+
+            if (!amount || amount < 1000) {
+                alert('Please enter a valid amount (minimum 1000 UGX)');
+                return;
+            }
+
+            if (!screenshot) {
+                alert('Please upload payment screenshot');
+                return;
+            }
+
+            // Get user data (you'll need to implement this)
+            const user = getCurrentUser(); // Replace with your actual user data function
+            
+            // Prepare form data
+            const formData = new FormData();
+            formData.append('method', method);
+            formData.append('amount', amount);
+            formData.append('screenshot', screenshot);
+            formData.append('userId', user.id);
+            formData.append('userEmail', user.email);
+
+            try {
+                // Show loading state
+                const button = document.querySelector(`#${method}-upload`).nextElementSibling;
+                button.disabled = true;
+                button.textContent = 'Processing...';
+
+                // Send to server
+                const response = await fetch('/api/deposit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert('Deposit submitted successfully! Your account will be credited after verification.');
+                    
+                    // Send email notification to admin
+                    await sendAdminNotification(method, amount, user.email);
+                    
+                    // Redirect to dashboard after 2 seconds
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 2000);
+                } else {
+                    alert(`Error: ${result.message || 'Failed to submit deposit'}`);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while submitting your deposit');
+            } finally {
+                // Reset button state
+                const button = document.querySelector(`#${method}-upload`).nextElementSibling;
+                button.disabled = false;
+                button.textContent = 'Submit Deposit';
+            }
+        }
+
+        // Function to send admin notification
+        async function sendAdminNotification(method, amount, userEmail) {
+            const adminEmail = 'technologysimpson@gmail.com';
+            const subject = `New Deposit Notification - ${amount} UGX via ${method}`;
+            const body = `
+                New deposit received:
+                
+                Payment Method: ${method === 'mtn' ? 'MTN Mobile Money (0789728064 - Agnes Akampurira)' : 'Airtel Money (0746157388 - Nabukeera Ruth)'}
+                Amount: ${amount} UGX
+                User Email: ${userEmail}
+                Timestamp: ${new Date().toLocaleString()}
+                
+                Please verify this payment and credit the user's account.
+            `;
+
+            try {
+                await fetch('/api/send-email', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        to: adminEmail,
+                        subject: subject,
+                        text: body
+                    })
+                });
+            } catch (error) {
+                console.error('Failed to send admin notification:', error);
+            }
+        }
+
+        // Mock function - replace with your actual user data function
+        function getCurrentUser() {
+            // In a real implementation, you would get this from your authentication system
+            return {
+                id: 'user123',
+                email: 'user@example.com'
+            };
+        }
+    </script>
 </body>
 </html>

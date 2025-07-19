@@ -229,7 +229,7 @@ function invest(amount, dailyReturn, duration) {
         dailyReturn: dailyReturn,
         duration: duration,
         startDate: new Date().toLocaleDateString(),
-        endDate: new Date(Date.now() + duration * 24 * 60 * 60 * 1000).toLocaleDateString()
+        endDate: new Date(Date.now() + duration * 24 * 60 * 60 * 2000).toLocaleDateString()
     };
 
     console.log('Investment made:', investmentData);

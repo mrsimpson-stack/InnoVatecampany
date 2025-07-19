@@ -75,7 +75,7 @@ function login() {
         id: 'user123',
         name: 'Active User',
         phone: phone,
-        balance: 4000
+        balance: 7000
     };
 
     // Save token to localStorage
